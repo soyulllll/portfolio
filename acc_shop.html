@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Noto+Sans+KR:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link href="./css/shop.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/acc_shop.js"></script>
+    <link rel="shortcut icon" href="./image/title_img.png">
+    <title>SHOP</title>
+</head>
+
+<body>
+    <!-- 상단 로고 및 메뉴 -->
+    <section class="allBox">
+        <header>
+            <a href="./web_site.html"><img src="./image/logo_img.png" alt="logo_img" class="logo_img"></a>
+            <span onclick="openNav()"><i class="xi-ellipsis-h menu_icon"></i></span>
+        </header>
+        <div id="sidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            <a href="./web_site.html">
+                <div class="click_buttom" id="home_click">HOME</div>
+            </a>
+            <a href="./about.html">
+                <div class="click_buttom" id="about_click">ABOUT</div>
+            </a>
+            <a>
+                <div class="click_buttom" id="shop_click">SHOP
+                    <div class="sub_menu" id="sub_big_menu1">
+                        <a href="./bag_shop.html">
+                            <div id="sub_menu1">bag</div>
+                        </a>
+                        <a href="./shoes_shop.html">
+                            <div id="sub_menu2">shoes</div>
+                        </a>
+                        <a href="./clothes_shop.html">
+                            <div id="sub_menu3">clothes</div>
+                        </a>
+                        <a href="./acc_shop.html">
+                            <div id="sub_menu4">acc</div>
+                        </a>
+                    </div>
+                </div>
+            </a>
+            <a>
+                <div class="click_buttom" id="lookbook_click">LOOKBOOK
+                    <div class="sub_menu" id="sub_big_menu2">
+                        <a href="./lookbook.html">
+                            <div id="sub_menu1">2021 fw lookbook</div>
+                        </a>
+                        <!--    <div id="sub_menu2">2021 ss lookbook</div>
+                        <div id="sub_menu3">2020 fw lookbook</div>
+                        <div id="sub_menu4">2020 ss lookbook</div>-->
+                    </div>
+                </div>
+            </a>
+            <a>
+                <div class="click_buttom" id="customer_click">CUSTOMER
+                    <div class="sub_menu" id="sub_big_menu3">
+                        <a href="./board.html">
+                            <div id="sub_menu1">Q & A</div>
+                        </a>
+                    </div>
+                </div>
+            </a>
+            <!--<a href="./contact.html">
+                <div class="click_buttom" id="contact_click">CONTACT</div>
+            </a>-->
+        </div>
+        <div class="clear"></div>
+
+
+        <!-- 상품 리스트 -->
+        <section class="shop_bar">
+            <img src="./image/title_img.png" alt="title_img" class="title_img">
+            <a href="./bag_shop.html">
+                <article>bag</article>
+            </a>
+            <a href="./shoes_shop.html">
+                <article>shoes</article>
+            </a>
+            <a href="./clothes_shop.html">
+                <article>clothes</article>
+            </a>
+            <a href="./acc_shop.html">
+                <article>acc</article>
+            </a>
+        </section>
+
+        <div class="style_bar"></div>
+
+        <section class="information_box" id="information_box"></section>
+
+        <section class="number_bar">
+            1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5
+        </section>
+
+        <!-- 하단 -->
+        <footer>
+            <i class="xi-angle-up-thin top_icon" id="top_icon"></i>
+            <section class="footer_content">
+                <div class="content1">이용약관&nbsp;&nbsp;&nbsp;개인정보처리방침&nbsp;&nbsp;&nbsp;사업자정보확인</div>
+                <div class="content2">상호: (주)스튜디오64&nbsp;&nbsp;|&nbsp;&nbsp;대표: YOONJOO
+                    KANG&nbsp;&nbsp;|&nbsp;&nbsp;개인정보관리책임자: ARAN BAEK</div>
+                <div class="content5"><a href="mailto:yurtstudio@gmail.com">이메일:
+                        yurtstudio@gmail.com</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="tle:02-3444-7064">전화:
+                        02-3444-7064</a>&nbsp;&nbsp;|&nbsp;&nbsp;사업자등록번호: 674-81-00343</div>
+                <div class="content7">주소: 서울특별시 용산구 한남동 684-10 1F 유르트&nbsp;&nbsp;|&nbsp;&nbsp;통신판매: 제 2016-서울용산-00846호
+                </div>
+                <div class="content10">호스팅제공자: (주)식스샵</div>
+            </section>
+        </footer>
+</body>
+
+</html>
