@@ -1,0 +1,360 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Special Elite', 'Gaegu', cursive;
+}
+
+.clear {
+    clear: both;
+}
+
+html {
+    background-color: #0D2611;
+}
+
+.pageAllBigBox {
+    width: 100%;
+    height: 100%;
+    margin-top: 40px;
+    position: relative;
+}
+
+.alertBigBox {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    margin-top: 30px;
+    display: none;
+}
+
+.alertSmallBox {
+    width: 600px;
+    height: 300px;
+    border-radius: 20px;
+    font-size: 30px;
+    line-height: 200px;
+    text-align: center;
+    color: #565656;
+    border: 10px solid rosybrown;
+    background-color: #ecf392;
+    margin-left: 650px;
+    margin-top: 250px;
+}
+
+.closeBtn {
+    width: 70px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 20px;
+    text-align: center;
+    display: block;
+    margin-left: 265px;
+    border: #0D2611;
+    color: #fff;
+    background-color: #0D2611;
+}
+
+.closeBtn:hover {
+    cursor: pointer;
+    opacity: 80%;
+    transform: scale(0.9);
+}
+
+.imgAllBox {
+    width: 1900px;
+    height: 800px;
+    position: relative;
+}
+
+.backgroundImg1 {
+    width: 250px;
+    height: 200px;
+    position: absolute;
+    left: 1630px;
+    top: 665px;
+}
+
+.backgroundImg2 {
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    left: 50px;
+    top: 700px;
+}
+
+.backgroundImg3 {
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    left: 70px;
+    top: 70px;
+}
+
+.backgroundImg4 {
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    left: 1350px;
+    top: 70px;
+}
+
+.backgroundImg5 {
+    width: 10px;
+    height: 450px;
+    position: absolute;
+    left: 690px;
+    top: 240px;
+}
+
+.backgroundImg6 {
+    width: 10px;
+    height: 450px;
+    position: absolute;
+    left: 1225px;
+    top: 240px;
+}
+
+.backgroundImg7 {
+    width: 1500px;
+    height: 10px;
+    position: absolute;
+    left: 210px;
+    top: 335px;
+}
+
+.backgroundImg8 {
+    width: 1900px;
+    height: 100px;
+    position: absolute;
+    left: 10px;
+    top: 104%;
+}
+
+
+
+.topName {
+    cursor: default;
+    width: 1920px;
+    height: 140px;
+    display: inline-block;
+    float: left;
+    font-size: 60px;
+    text-align: center;
+    line-height: 140px;
+    color: #fff;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin-top: 18px;
+}
+
+.subName {
+    cursor: default;
+    width: 1920px;
+    height: 10px;
+    display: inline-block;
+    float: left;
+    font-size: 30px;
+    text-align: center;
+    line-height: 10px;
+    color: #fff;
+    letter-spacing: 4px;
+}
+
+.abAllBox {
+    width: 1700px;
+    height: 650px;
+    display: inline-block;
+    float: left;
+    margin-left: 110px;
+    margin-top: 72px;
+    border-radius: 10px;
+    /*  border: 50px solid #64405a;
+  background-color: #ad96a9; */
+}
+
+.aBigBox {
+    width: 500px;
+    height: 100px;
+    display: inline-block;
+    float: left;
+    margin-left: 75px;
+}
+
+.bBigBox {
+    width: 500px;
+    height: 100px;
+    display: inline-block;
+    float: left;
+    margin-left: 35px;
+}
+
+.atextBox {
+    cursor: default;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    float: left;
+    font-size: 40px;
+    line-height: 45px;
+    text-align: center;
+    margin-left: 150px;
+    color: #ecf392;
+    font-weight: bold;
+    margin-top: 42px;
+}
+
+.btextBox {
+    cursor: default;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    float: left;
+    font-size: 40px;
+    line-height: 45px;
+    text-align: center;
+    margin-left: 150px;
+    color: #ecf392;
+    font-weight: bold;
+    margin-top: 42px;
+}
+
+.aYBox,
+.aXBox {
+    width: 50px;
+    height: 40px;
+    line-height: 38px;
+    background-color: #ecf392;
+    border: 3px solid #ecf392;
+    border-radius: 50px;
+    text-align: center;
+    display: inline-block;
+    float: left;
+    font-size: 20px;
+    line-height: 40px;
+    color: #0D2611;
+    font-weight: bold;
+    outline: 0px;
+    margin-left: 10px;
+    margin-top: 35px;
+}
+
+.bYBox,
+.bXBox {
+    width: 50px;
+    height: 40px;
+    line-height: 38px;
+    background-color: #ecf392;
+    border: 3px solid #ecf392;
+    border-radius: 50px;
+    text-align: center;
+    display: inline-block;
+    float: left;
+    line-height: 40px;
+    font-size: 20px;
+    color: #0D2611;
+    font-weight: bold;
+    outline: 0px;
+    margin-left: 10px;
+    margin-top: 35px;
+}
+
+.buttonBox {
+    width: 330px;
+    height: 100px;
+    display: inline-block;
+    float: left;
+    margin-left: 110px;
+    margin-right: 70px;
+}
+
+.plusBox,
+.minusBox,
+.multiplyBox,
+.playBox,
+.randomBox {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    float: left;
+    font-size: 40px;
+    border-radius: 50px;
+    background-color: #ecf392;
+    border: 3px solid #ecf392;
+    color: #0D2611;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.plusBox:hover,
+.minusBox:hover,
+.multiplyBox:hover,
+.playBox:hover,
+.randomBox:hover {
+    cursor: pointer;
+    color: #fff;
+    background-color: #90a955;
+    border: 3px solid #90a955;
+}
+
+.allPrintBox {
+    width: 1530px;
+    height: 500px;
+    display: inline-block;
+    float: left;
+    margin-top: 30px;
+    margin-left: 85px;
+}
+
+.aPrintBox,
+.bPrintBox,
+.printBox {
+    width: 470px;
+    height: 485px;
+    display: inline-block;
+    float: left;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    left: 0px;
+}
+
+table {
+    position: absolute;
+    left: 5%;
+}
+
+.aInputClass,
+.bInputClass {
+    width: 60px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #0D2611;
+    border: 3px solid #ffffff;
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+    outline: 0px;
+}
+
+.abInputClass {
+    width: 60px;
+    height: 40px;
+    border-radius: 50px;
+    background-color: #0D2611;
+    border: 3px solid #ffffff;
+    font-size: 20px;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 40px;
+    outline: 0px;
+}
