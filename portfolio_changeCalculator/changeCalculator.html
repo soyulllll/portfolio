@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/earlyaccess/kokoro.css" rel="stylesheet">
+    <link href="./css/changeCalculator.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./js/changeCalculator.js"></script>
+    <link rel="shortcut icon" href="./image/title.png">
+    <title>Change calculator</title>
+</head>
+
+<body>
+    <section class="allBigBox">
+        <!--경고창-->
+        <section class="xWindow">
+            <article class="contentBox">
+                <button class="closeBtn">확인</button>
+            </article>
+        </section>
+        <section class="topName">ス&nbsp;&nbsp;&nbsp;シ</section>
+        <img src="./image/name.png" alt="nameBox" class="nameBox">
+        <!-- 초밥 이미지 -->
+        <section class="storeBigBox">
+            <img src="./image/img(6).png" alt="barImg" class="barImg">
+            <section class="storeContentBox" id="storeContentBox">
+                <div class="move1"><img src="./image/img(1).png" alt="storeImg1" class="storeImg1">
+                    <img src="./image/countBox(1).png" alt="countBox1" class="countBox1">
+                    <article class="countName1">참돔</article>
+                </div>
+                <div class="move2"><img src="./image/img(2).png" alt="storeImg2" class="storeImg2">
+                    <img src="./image/countBox(2).png" alt="countBox2" class="countBox2">
+                    <article class="countName2">참치</article>
+                </div>
+                <div class="move3"><img src="./image/img(3).png" alt="storeImg3" class="storeImg3">
+                    <img src="./image/countBox(3).png" alt="countBox3" class="countBox3">
+                    <article class="countName3">새우</article>
+                </div>
+                <div class="move4"><img src="./image/img(4).png" alt="storeImg4" class="storeImg4">
+                    <img src="./image/countBox(4).png" alt="countBox4" class="countBox4">
+                    <article class="countName4">숭어</article>
+                </div>
+                <div class="move5"><img src="./image/img(5).png" alt="storeImg5" class="storeImg5">
+                    <img src="./image/countBox(5).png" alt="countBox5" class="countBox5">
+                    <article class="countName5">광어</article>
+                </div>
+            </section>
+        </section>
+        <div class="clear"></div>
+
+        <!-- 금액 -->
+        <section class="textBox">
+            <img src="./image/sign.png" alt="sign1" class="sign1">
+            <section class="signBox">
+                <article class="totalText">총 금액</article>
+                <article class="totalBox" id="totalBox"></article>
+                <h1>원</h1>
+            </section>
+
+            <img src="./image/sign.png" alt="sign1" class="sign2">
+            <section class="signBox">
+                <article class="chargeText">지불한 금액</article>
+                <article class="chargeBox" id="chargeBox"></article>
+                <h1>원</h1>
+            </section>
+
+            <img src="./image/sign.png" alt="sign1" class="sign3">
+            <section class="signBox">
+                <article class="changeText">거스름돈</article>
+                <article class="firstResul" id="firstResul"></article>
+                <h1 class="won3">원</h1>
+            </section>
+        </section>
+        <div class="clear"></div>
+
+        <!-- 거스름돈 -->
+        <section class="resultBox">
+            <article class="resulImg">
+                <article class="numberBox1"></article>
+                <article class="numberBox2"></article>
+                <article class="numberBox3"></article>
+                <article class="numberBox4"></article>
+                <article class="numberBox5"></article>
+                <article class="storeName1">참돔</article>
+                <article class="storeName2">참치</article>
+                <article class="storeName3">새우</article>
+                <article class="storeName4">숭어</article>
+                <article class="storeName5">광어</article>
+                <img src="./image/moneyBox.png" alt="moneyBox" class="moneyBox">
+                <img src="./image/money50000.png" alt="money50000" class="money50000">
+                <img src="./image/money10000.png" alt="money10000" class="money10000">
+                <img src="./image/money5000.png" alt="money5000" class="money5000">
+                <img src="./image/money1000.png" alt="money1000" class="money1000">
+                <img src="./image/money500.png" alt="money500" class="money500">
+                <img src="./image/money100.png" alt="money100" class="money100">
+                <img src="./image/money50.png" alt="money50" class="money50">
+                <img src="./image/money10.png" alt="money10" class="money10">
+                <button class="payBox" id="payBox">계산하기</button>
+                <button class="resetBox" id="resetBox">처음으로</button>
+            </article>
+            <img src="./image/allMoney.png" alt="allMoney" class="allMoney" id="allMoney">
+            <section class="resulText" id="resulText"></section>
+        </section>
+        <div class="clear"></div>
+
+    </section>
+</body>
+
+</html>
