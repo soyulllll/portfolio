@@ -1,0 +1,137 @@
+@media screen and (max-width: 769px) {
+  .reserves_payment__content_all_box {
+    width: 95%;
+    margin: auto;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:first-child {
+    width: 610.55px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(2),
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(3) {
+    width: 258.2px;
+    margin-top: 30px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(2) {
+    margin-left: 0px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box {
+    width: 610.55px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box:last-child {
+    margin-left: 0px;
+    margin-top: 30px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__pay_button {
+    margin: 50px 0 50px 230px;
+  }
+}
+
+@media screen and (max-width: 376px) {
+  .reserves_payment__content_all_box {
+    width: 90%;
+  }
+  .reserves_payment__content_all_box .reserves_payment__name {
+    padding: 50px 0;
+    font-size: 15px;
+    padding-bottom: 25px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__sub_name {
+    font-size: 12px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_box,
+  .reserves_payment__content_all_box .reserves_payment__discount_box,
+  .reserves_payment__content_all_box .reserves_payment__policy_box {
+    width: 90%;
+    padding: 20px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:first-child,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(2),
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(3) {
+    width: 263.75px;
+    height: auto;
+    padding: 20px;
+    margin-left: 0px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:first-child .reserves_payment__info_txt_box,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(2) .reserves_payment__info_txt_box,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(3) .reserves_payment__info_txt_box {
+    padding: 8px;
+    border-radius: 10px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:first-child .reserves_payment__info_txt_box .reserves_payment__info_amount_txt,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(2) .reserves_payment__info_txt_box .reserves_payment__info_amount_txt,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(3) .reserves_payment__info_txt_box .reserves_payment__info_amount_txt {
+    font-size: 10px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:first-child .reserves_payment__info_txt_box .reserves_payment__info_bar,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(2) .reserves_payment__info_txt_box .reserves_payment__info_bar,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(3) .reserves_payment__info_txt_box .reserves_payment__info_bar {
+    top: -6px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:first-child .reserves_payment__info_txt,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(2) .reserves_payment__info_txt,
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(3) .reserves_payment__info_txt {
+    padding: 8px;
+    font-size: 10px;
+    border-radius: 10px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(2),
+  .reserves_payment__content_all_box .reserves_payment__info_content_box:nth-child(3) {
+    margin-top: 20px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box {
+    width: 263.75px;
+    padding: 20px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box .reserves_payment__discount_sub_box .reserves_payment__discount_notice_txt {
+    padding: 5px 0 0 0;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box .reserves_payment__discount_sub_box .reserves_payment__discount_txt {
+    font-size: 10px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box .reserves_payment__discount_sub_box .reserves_payment__discount_txt .reserves_payment__discount_percent_box {
+    padding: 8px 10px;
+    font-size: 10px;
+    border-radius: 8px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box .reserves_payment__discount_sub_box .reserves_payment__discount_txt .reserves_payment__discount_percent_box .reserves_payment__discount_icon {
+    width: 6px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box .reserves_payment__discount_sub_box .reserves_payment__discount_txt .reserves_payment__discount_input {
+    width: 35px;
+    margin-left: 5px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box .reserves_payment__discount_sub_box .reserves_payment__discount_txt .reserves_payment__discount_all_button {
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box .reserves_payment__discount_sub_box .discount_txt {
+    margin-top: 10px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box .discount_sub_box {
+    margin-top: 20px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__discount_content_box:last-child {
+    margin-top: 20px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__policy_content_box {
+    padding: 20px 20px 20px 25px;
+    line-height: 30px;
+    font-size: 10px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__policy_checkbox {
+    margin-top: 15px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__policy_checkbox .reserves_payment__policy_checkbox_txt {
+    font-size: 10px;
+  }
+  .reserves_payment__content_all_box .reserves_payment__pay_button {
+    width: 180px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+    margin: 50px 0 50px 82px;
+  }
+}
+/*# sourceMappingURL=reserves_payment_m.css.map */
