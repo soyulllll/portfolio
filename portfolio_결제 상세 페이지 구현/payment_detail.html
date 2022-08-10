@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+
+{% block page_title %}
+Payment Detail
+{% endblock page_title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/screens/payment/payment_detail.css' %}" type="text/css">
+{% endblock css %}
+
+{% block content %}
+<section class="payment_detail__content_all_box">
+	<div class="payment_detail__payment_box">
+		<div class="payment_detail__name">{% trans "PAYMENT INFORMATION" %}</div>
+		<div class="payment_detail__content_box">
+
+			<!-- 상세 정보 -->
+			<div class="payment_detail__number_box">
+				<div class="payment_detail__icon">
+					<img src="{% static 'image/icon/payment_detail__info_img.png' %}" alt="info_icon" />
+				</div>
+				<p class="payment_detail__sub_name">{{ order.order_id }}</p> <!--고유 번호-->
+				<div class="payment_detail__info_content_box">
+					<div class="payment_detail__info_name_box">
+						<p class="payment_detail__info_name info_name">{% trans "Service ver." %}</p>
+						<p class="payment_detail__info_name">{% trans "Payment Day" %}</p>
+						<p class="payment_detail__info_name">{% trans "Service Price" %}</p>
+						<p class="payment_detail__info_name">{% trans "Payment  State" %}</p>
+					</div>
+					<hr class="payment_detail__info_bar">
+					<div class="payment_detail__info_txt_box">
+						<p class="payment_detail__info_txt">{{ order.name }}</p> <!--상품 이름-->
+						<p class="payment_detail__info_txt">{{ order.created }}</p> <!--결제일-->
+						<p class="payment_detail__info_txt">{{ order.total_price|intcomma }} ₩</p> <!--상품 금액-->
+						<p class="payment_detail__info_txt">
+							{% if order.status == 0 or order.status == 1 or order.status == 20 %}
+								{% if order.status == 0 %} <!-- 결제 대기 -->
+									{% trans "Deposit Waiting" %}
+								{% elif order.status == 1 %}<!-- 결제 확인 -->
+									{% trans "Payment Completed" %}
+								{% elif order.status == 20 %}<!-- 결제 취소 -->
+									{% trans "Cancel Payment" %}
+								{% endif %}
+							{% else %}
+								{% trans "Waiting" %}
+							{% endif %}
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- 할인 정보 -->
+			<div class="payment_detail__details_box">
+				<div class="payment_detail__icon">
+					<img src="{% static 'image/icon/payment_detail__discount_img.png' %}" alt="discount_icon" />
+				</div>
+				<p class="payment_detail__sub_name">{% trans "Payment Details" %}</p>
+				<div class="payment_detail__discount_box discount_box">
+					<p class="payment_detail__discount_name">{% trans "Discount Details" %}</p>
+					<div class="payment_detail__discount_sub_box">
+						<p class="payment_detail__discount_sub_name">{% trans "Product Discount" %}</p>
+						<div class="payment_detail__discount_txt">{{ order.discount|intcomma }} ₩</div> <!--할인 금액-->
+					</div>
+					<div class="payment_detail__discount_sub_box"> 
+						<p class="payment_detail__discount_sub_name">{% trans "Spent Reserves" %}</p>
+						<div class="payment_detail__discount_txt">{{ order.use_point|intcomma }} ₩</div> <!--사용한 적립금 금액-->
+					</div>
+					<div class="payment_detail__discount_sub_box">
+						<p class="payment_detail__discount_sub_name">{% trans "Total Discount" %}</p>
+						<div class="payment_detail__discount_txt discount_total">{{ order.discount|add:order.use_point|intcomma }} ₩</div> <!--총 할인 금액-->
+						<div class="payment_detail__discount_txt discount_percent">{{ order.discount_rate }} %</div> <!--총 할인 퍼센트-->
+					</div>
+				</div> 
+				<div class="payment_detail__discount_box">
+					<p class="payment_detail__discount_name">{% trans "Final Payment Details" %}</p>
+					<div class="payment_detail__discount_sub_box">
+						<p class="payment_detail__discount_sub_name">{% trans "Service Amount" %}</p>
+						<div class="payment_detail__discount_txt">{{ order.price|intcomma }} ₩</div> <!--할인 전 원가 표시-->
+					</div>
+					<div class="payment_detail__discount_sub_box">
+						<p class="payment_detail__discount_sub_name">{% trans "Total Discount" %}</p>
+						<div class="payment_detail__discount_txt">{{ order.discount|intcomma }} ₩</div> <!--총 할인 금액-->
+					</div>
+					<div class="payment_detail__discount_sub_box">
+						<p class="payment_detail__discount_sub_name">{% trans "Final Payment" %}</p>
+						<div class="payment_detail__discount_txt">{{ order.total_price|intcomma }} ₩</div> <!--결제 금액-->
+					</div>
+					<div class="payment_detail__discount_sub_box">
+						<p class="payment_detail__discount_sub_name">{% trans "Payment Way" %}</p>
+						<div class="payment_detail__discount_txt">{{ order.pg_name }}</div> <!--결제 수단-->
+					</div>
+					<!-- TODO: 
+						order.receipt_url 이용하여 팝업으로 띄워줄수있도록 변경
+					-->
+					<button class="payment_detail__receipt_txt">{% trans "VIEW RECEIPT" %}</button> <!--영수증 보기-->
+				</div>
+			</div>
+
+			<div class = "payment_detail__receipt_modal">
+				<div class = "payment_detail__receipt">
+					<button type = "button" class = "modal_close_btn"></button>
+				</div>
+			</div>
+
+            {% if order.status == 20 %} <!--결제 취소했을 때 (결제 취소 상세페이지)-->
+            <div class = "payment_detail__cancel_box">
+                <div class = "payment_detail__cancel_content_box">
+                    <p class="payment_detail__discount_name">{% trans "Refund Information" %}</p>
+                    <div class="payment_detail__discount_sub_box">
+						<p class="payment_detail__discount_sub_name">{% trans "Refund Amount" %}</p>
+						<div class="payment_detail__discount_txt payment_detail__refund_txt">{{ order.refund_price|intcomma }} ₩</div> <!--환불 금액-->
+					</div>
+                    <div class="payment_detail__discount_sub_box">
+						<p class="payment_detail__discount_sub_name">{% trans "Refund Way" %}</p>
+						<div class="payment_detail__discount_txt">
+							<p class = "payment_detail__discount_refund_way_txt">{{ order.refund_name }}</p> <!--환불 수단 자동 생성-->
+						</div>
+					</div>
+                </div>
+            </div>
+            {% endif %}
+
+			<!-- 안내 사항 -->
+			<div class="payment_detail__notice_box">
+				<div class="payment_detail__icon">
+					<img src="{% static 'image/icon/payment_detail__notice_img.png' %}" alt="notice_icon" />
+				</div>
+				<ul class="payment_detail__notice_txt_box">
+					<li class="payment_detail__notice_txt">
+						{% trans "You can get a 100% refund within an hour of payment." %}</li>
+					<li class="payment_detail__notice_txt">
+						{% trans "If you apply for a refund 1 hour after payment (due to just a  change of mind), the refund amount will be limited to 90%." %}<br>
+						{% trans "As for the refund method, you can choose between reserve payment and cash payment." %}<br>
+						{% trans "- Cash payment: Transfer of the amount to which the refund regulations apply to the account." %}<br>
+						{% trans "- Payment of reserves: 100% of the payment amount is paid as reserves regardless of the refund regulations (however, the reserves cannot be converted into cash)." %}
+					</li>
+					<li class="payment_detail__notice_txt">
+						{% trans "If you fail to submit a style quiz within 3 days, including the payment date, the consulting application will be automatically canceled, and in this case, 90% of the payment will be refunded as reserves, excluding penalties. If you don't submit the quiz, you can't get a cash refund, so please check the deadline." %}
+					</li>
+					<li class="payment_detail__notice_txt">
+						{% trans "Once the style quiz is finally submitted, it is difficult to change the consultant's schedule, so you cannot get a refund." %}
+					</li>
+					<li class="payment_detail__notice_txt">
+						{% trans "All reserves, including those refunded as reserves, are not converted into cash." %}
+					</li>
+					<li class="payment_detail__notice_txt">
+						{% trans "Unused Consulting Inquiry services cannot be refunded even after the expiration of the period." %}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+
+	let receiptModal = document.querySelector('.payment_detail__receipt_modal');
+	let modalBtn = document.querySelector('.payment_detail__receipt_txt');
+	let modalCloseBtn = document.querySelector('.modal_close_btn');
+
+	modalBtn.addEventListener('click', function(){
+		receiptModal.style.display = 'block';
+	});
+
+	modalCloseBtn.addEventListener('click', function(){
+		receiptModal.style.display = 'none';
+	});
+	
+</script>
+{% endblock content %}
