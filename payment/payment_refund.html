@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load payments_tags %}
+
+{% block page_title %}
+Payment Refund
+{% endblock page_title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/screens/payment/payment_refund.css' %}" type="text/css">
+{% endblock css %}
+
+{% block content %}
+<section class="payment_refund__content_all_box">
+    <div class="payment_refund__payment_box">
+        <p class="payment_refund__name">{% trans "PAYMENT INFORMATION" %}</p>
+        <div class="payment_refund__content_box">
+
+            <!-- 상세 정보 -->
+            <div class="payment_refund__number_box">
+                <div class="payment_refund__icon">
+                    <img src="{% static 'image/icon/payment_detail__info_img.png' %}" alt="info_icon" />
+                </div>
+                <p class="payment_refund__sub_name">{{ ordermodel.order_id }}</p> <!--고유 번호-->
+                <div class="payment_refund__info_content_box">
+                    <div class="payment_refund__info_name_box">
+                        <p class="payment_refund__info_name info_name">{% trans "Service ver." %}</p>
+                        <p class="payment_refund__info_name">{% trans "Payment Day" %}</p>
+                        <p class="payment_refund__info_name">{% trans "Service Price" %}</p>
+                        <p class="payment_refund__info_name">{% trans "Payment State" %}</p>
+                    </div>
+                    <hr class="payment_refund__info_bar">
+                    <div class="payment_refund__info_txt_box">
+                        <p class="payment_refund__info_txt">{{ ordermodel.name }}</p> <!--상품 이름-->
+                        <p class="payment_refund__info_txt">{{ ordermodel.created }}</p> <!--결제일-->
+                        <p class="payment_refund__info_txt">{{ ordermodel.total_price|intcomma }} ₩</p> <!--상품 금액-->
+                        <p class="payment_refund__info_txt">
+                            {% if ordermodel.status == 0 or ordermodel.status == 1 or ordermodel.status == 20 %}
+                                {% if ordermodel.status == 0 %} <!-- 결제 대기 -->
+                                    {% trans "Deposit Waiting" %}
+                                {% elif ordermodel.status == 1 %}<!-- 결제 확인 -->
+                                    {% trans "Payment Completed" %}
+                                {% elif ordermodel.status == 20 %}<!-- 결제 취소 -->
+                                    {% trans "Canceled Payment" %}
+                                {% endif %}
+                            {% else %}
+                                {% trans "Waiting" %}
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <form method="POST" action="" id="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- 환불 수단 -->
+            <div class="payment_refund__details_box">
+                <div class="payment_refund__icon">
+                    <img src="{% static 'image/icon/payment_refund__details_img.png' %}" alt="discount_icon" />
+                </div>
+                <p class="payment_refund__sub_name">{% trans "Refund Details" %}</p>
+                <div class="payment_refund__content_box refund__content_box">
+                    <p class="payment_refund__content_name">{% trans "Refund Way" %}</p>
+                    {% is_over_time ordermodel.purchased_at as over_time %}
+                    {% if over_time %} <!--1시간 이전-->
+                    <p class = "payment_refund__way_box">
+                        <input class = "payment_refund__way_checkbox" id = "payment_refund__way_checkbox" type = "checkbox" name = "refund_way" value = {{ordermodel.pg_name}} />
+                        <label class = "payment_refund__way_txt">{{ ordermodel.pg_name }}</label> <!--환불 수단 자동 생성-->
+                    </p>
+
+                    <p class = "payment_refund__way_box">
+                        <input class = "payment_refund__way_checkbox refund_cash" id = "payment_refund__way_checkbox" type = "checkbox" name = "refund_way" value = "Cash" />
+                        <label class = "payment_refund__way_txt">{% trans "Cash" %}</label>
+                    </p>
+
+                    {% else %} <!--1시간 이후-->
+                    <p class = "payment_refund__way_box">
+                        <input class = "payment_refund__way_checkbox" id = "payment_refund__way_checkbox" type = "checkbox" name = "refund_way" value = {{ordermodel.pg_name}} />
+                        <label class = "payment_refund__way_txt">{{ ordermodel.pg_name }}</label> <!--결제한 수단 자동 생성-->
+                    </p>
+
+					<p class = "payment_refund__way_box">
+                        <input class = "payment_refund__way_checkbox" id = "payment_refund__way_checkbox" type = "checkbox" name = "refund_way" value = "Reserves" />
+                        <label class = "payment_refund__way_txt">{% trans "Reserves" %}</label>
+                    </p>
+
+                    <p class = "payment_refund__way_box">
+                        <input class = "payment_refund__way_checkbox refund_cash" id = "payment_refund__way_checkbox" type = "checkbox" name = "refund_way" value = "Cash" />
+                        <label class = "payment_refund__way_txt">{% trans "Cash" %}</label>
+                    </p>
+                    {% endif %}
+                </div>
+            </div> 
+
+            <!--환불 계좌 입력창-->
+            <div class = "payment_refund__cancel_content_box">
+                <div class = "payment_refund__refund_user_bank"></div><!--bank-->
+                <input type = "text" class = "payment_refund__refund_user_name" name= {{form.refund_bank.name}} placeholder="Account Holder" />
+                <input type = "number" class = "payment_refund__refund_user_number" name= {{form.refund_account_number.name}} placeholder="Write down your Account Number" />
+                <p class = "payment_refund__refund_info">{% trans "Your account information will ONLY be used for refund purposes, NOT for any other purposes." %}</p>
+            </div>
+
+            <!-- 환불 사유 -->
+            <div class="payment_refund__reason_box refund__reason_box">
+                <div class="payment_refund__icon">
+                    <img src="{% static 'image/icon/payment_refund__reason_img.png' %}" alt="discount_icon" />
+                </div>
+                <p class="payment_refund__sub_name">{% trans "Refund Reason" %}</p>
+                <div class="payment_refund__content_box">
+                    <p class="payment_refund__content_name">{% trans "Refund Reason" %}</p>
+                    <textarea id="" class="payment_refund__details_txt refund_reason_txt" name={{form.refund_reason.name}} placeholder="Please write down the reason why you want to get a refund"></textarea> <!--환불 사유 입력-->
+                </div>
+            </div>
+
+            <!-- 최종 결제 정보 -->
+            <div class="payment_refund__total_box">
+                <div class="payment_refund__icon">
+                    <img src="{% static 'image/icon/payment_refund__total_img.png' %}" alt="discount_icon" />
+                </div>
+                <p class="payment_refund__sub_name">{% trans "Final Payment Details" %}</p>
+                <div class="payment_refund__content_box">
+					<div class="payment_refund__total_sub_box total_sub_box">
+						<p class="payment_refund__total_sub_name">{% trans "Service Amount" %}</p>
+						<p class="payment_refund__total_txt">{{ ordermodel.price|intcomma }} ₩</p> <!--원가 금액-->
+					</div>
+					<div class="payment_refund__total_sub_box">
+						<p class="payment_refund__total_sub_name">{% trans "Total Discount" %}</p>
+						<p class="payment_refund__total_txt">{{ ordermodel.discount|intcomma }} ₩</p> <!--총 할인 금액-->
+					</div>
+					<div class="payment_refund__total_sub_box">
+						<p class="payment_refund__total_sub_name">{% trans "Final Payment" %}</p>
+						<p class="payment_refund__total_txt refund__total_txt">{{ ordermodel.total_price|intcomma }} ₩</p> <!--최종 결제 금액-->
+					</div>
+                </div>
+            </div>
+
+            <!-- 안내 사항 -->
+            <div class="payment_refund__notice_box">
+                <div class="payment_refund__icon">
+                    <img src="{% static 'image/icon/payment_detail__notice_img.png' %}" alt="notice_icon" />
+                </div> 
+                <ul class="payment_refund__notice_txt_box">
+                    <li class="payment_refund__notice_txt">
+                        {% trans "You can get a 100% refund within an hour of payment." %}</li>
+                    <li class="payment_refund__notice_txt">
+						{% trans "If you apply for a refund 1 hour after payment (due to just a  change of mind), the refund amount will be limited to 90%." %}<br>
+						{% trans "As for the refund method, you can choose between reserve payment and cash payment." %}<br>
+						{% trans "- Cash payment: Transfer of the amount to which the refund regulations apply to the account." %}<br>
+						{% trans "- Payment of reserves: 100% of the payment amount is paid as reserves regardless of the refund regulations (however, the reserves cannot be converted into cash)." %}
+					</li>
+                    <li class="payment_refund__notice_txt">
+                        {% trans "If you fail to submit a style quiz within 3 days, including the payment date, the consulting application will be automatically canceled, and in this case, 90% of the payment will be refunded as reserves, excluding penalties. If you don't submit the quiz, you can't get a cash refund, so please check the deadline." %}
+                    </li>
+                    <li class="payment_refund__notice_txt">
+                        {% trans "Once the style quiz is finally submitted, it is difficult to change the consultant's schedule, so you cannot get a refund." %}
+                    </li>
+                    <li class="payment_refund__notice_txt">
+                        {% trans "All reserves, including those refunded as reserves, are not converted into cash." %}
+                    </li>
+                    <li class="payment_refund__notice_txt">
+                        {% trans "Unused Consulting Inquiry services cannot be refunded even after the expiration of the period." %}
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 환불 버튼 -->
+            <button class = "payment_refund__button">{% trans "Request Refund" %}</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- 모달창 -->
+<div class = "payment_refund__modal_box">
+    <div class = "payment_refund__modal_content_box">
+        <p class = "payment_refund__modal_txt">{% trans "Request a Refund?" %}</p>
+        <button class = "payment_refund__close_button">{% trans "CLOSE" %}</button>
+        <button class = "payment_refund__apple_button">
+			<a href="">{% trans "APPLY" %}</a> <!--버튼 클릭 시 목록 페이지로 이동-->
+		</button>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+
+        $('input[type="checkbox"][name="refund_way"]').click(function(){
+            if($(this).prop('checked')){
+                $('input[type="checkbox"][name="refund_way"]').prop('checked',false);
+                $(this).prop('checked',true);
+            }
+        });
+        /*
+        $(".payment_refund__button").on("click", function(){
+            $(".payment_refund__modal_box").css("display", "block");
+        });
+
+        $(".payment_refund__close_button").on("click", function(){
+            $(".payment_refund__modal_box").css("display", "none");
+        });
+        */
+		// 환불 계좌 입력창
+		$('input[type="checkbox"][name="refund_way"]').change(function(){
+			if( $('.refund_cash').is(":checked") ){
+				$('.payment_refund__cancel_content_box').css("display", "block");
+			} else {
+				$('.payment_refund__cancel_content_box').css("display", "none");
+			}
+		});
+
+    });
+</script>
+{% endblock content %}
