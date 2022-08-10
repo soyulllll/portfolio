@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+
+{% block page_title %}
+Payment
+{% endblock page_title %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/screens/payment/reserves_payment.css' %}" type="text/css">
+<link rel="stylesheet" href="{% static 'css/screens/payment/reserves_payment_m.css' %}" type="text/css">
+{% endblock css %}
+
+{% block content %}
+
+<body onload="chkPoint({{price}},{{discount}},{{point}},0,100,100)">
+	<section class="reserves_payment__content_all_box">
+		<!--info box-->
+		<p class="reserves_payment__name">{% trans "Service Information" %}</p>
+		<div class="reserves_payment__info_box">
+			<div class="reserves_payment__info_content_box">
+				<p class="reserves_payment__sub_name">{% trans "Service ver." %}</p>
+				<p class="reserves_payment__info_txt">{{ name }}</p> <!--상품 이름-->
+			</div>
+			<div class="reserves_payment__info_content_box">
+				<p class="reserves_payment__sub_name">{% trans "Product Discount" %}</p>
+				<p class="reserves_payment__info_txt" id="pay_disc_1"></p>
+			</div>
+			<div class="reserves_payment__info_content_box">
+				<p class="reserves_payment__sub_name">{% trans "Payment Amount" %}</p>
+				<div class="reserves_payment__info_txt_box">
+					<div class="reserves_payment__info_amount_txt"><span id="all_price_1"></span>
+						<div class="reserves_payment__info_bar"></div>
+					</div>
+					<p class="reserves_payment__info_amount_txt" id="amount_txt"></p>
+				</div>
+			</div>
+		</div>
+
+		<!--discount box-->
+		<p class="reserves_payment__name">{% trans "Discount / Reserves" %}</p>
+		<div class="reserves_payment__discount_box">
+			<div class="reserves_payment__discount_content_box">
+				<div class="reserves_payment__discount_sub_box">
+					<p class="reserves_payment__sub_name">{% trans "Service Price" %}</p>
+					<p class="reserves_payment__discount_txt" id="all_price_2"></p>
+				</div>
+				<div class="reserves_payment__discount_sub_box discount_sub_box">
+					<p class="reserves_payment__sub_name">{% trans "Product Discount" %}</p>
+					<p class="reserves_payment__discount_txt" id="pay_disc_2"></p>
+				</div>
+				<div class="reserves_payment__discount_sub_box discount_sub_box">
+					<p class="reserves_payment__sub_name discount_sub_name">{% trans "Reserves" %}</p>
+					<p class="reserves_payment__discount_notice_txt">{% trans "(You can use the reserve in units of 100 won.)" %}</p>
+					<p class="reserves_payment__discount_txt discount_txt">{% trans "Usable Amount" %} {{ point|intcomma }}₩ <!--사용가능 적립금-->
+						<input type="number" name="use_pnt" id="use_pnt" min="100" max=""
+							onchange="changePoint({{price}},{{discount}},{{point}},0,100,100)"
+							class="reserves_payment__discount_input" /> ₩
+						<button id="chk_use" onclick="chkPoint({{price}},{{discount}},{{point}},0,100,100)"
+							class="reserves_payment__discount_all_button">
+							{% trans "Use ALL" %}
+						</button>
+					</p>
+				</div>
+			</div>
+
+			<div class="reserves_payment__discount_content_box">
+				<!--<div class="reserves_payment__discount_sub_box">
+					<p class="reserves_payment__sub_name">{% trans "Service Price" %}</p>
+					<p class="reserves_payment__discount_txt" id="all_price"></p>
+				</div>
+				<div class="reserves_payment__discount_sub_box discount_sub_box">
+					<p class="reserves_payment__sub_name">{% trans "Product Discount" %}</p>
+					<p class="reserves_payment__discount_txt" id="pay_disc"></p>
+				</div>-->
+				<div class="reserves_payment__discount_sub_box">
+					<p class="reserves_payment__sub_name">{% trans "Use Reserves" %}</p>
+					<p class="reserves_payment__discount_txt" id="total_pnt"></p>
+				</div>
+				<div class="reserves_payment__discount_sub_box discount_sub_box">
+					<p class="reserves_payment__sub_name">{% trans "Total Discount" %}</p>
+					<div class="reserves_payment__discount_txt"><span id="total_disc"></span>
+						<p class="reserves_payment__discount_percent_box" id="percent_box">
+							<img class="reserves_payment__discount_icon"
+								src="{% static 'image/icon/reserves_payment__discount_icon.png' %}"
+								alt="discount_icon" />
+							<span id="percent_txt"></span>
+						</p>
+					</div>
+				</div>
+				<div class="reserves_payment__discount_sub_box discount_sub_box">
+					<p class="reserves_payment__sub_name">{% trans "Payment Commission" %}</p>
+					<p class="reserves_payment__discount_txt" id="com_txt"></p>
+				</div>
+				<div class="reserves_payment__discount_sub_box discount_sub_box">
+					<p class="reserves_payment__sub_name">{% trans "Final Payment" %}</p>
+					<p class="reserves_payment__discount_txt final_payment_txt" id="result_pnt"></p>
+				</div>
+			</div>
+		</div>
+
+		<!--refund policy box-->
+		<p class="reserves_payment__name">{% trans "Refund Policy" %}</p>
+		<div class="reserves_payment__policy_box">
+			<ul class="reserves_payment__policy_content_box">
+				<li class="reserves_payment__policy_txt">
+					{% trans "You can get a 100% refund within an hour of payment." %}</li>
+				<li class="reserves_payment__policy_txt">
+					{% trans "If you apply for a refund 1 hour after payment (due to just a  change of mind), the refund amount will be limited to 90%." %}
+				</li>
+				<li class="policy_txt_disc_none">
+					{% trans "As for the refund method, you can choose between reserve payment and cash payment." %}
+				</li>
+				<li class="policy_txt_disc_none">
+					{% trans "- Cash payment: Transfer of the amount to which the refund regulations apply to the account." %}
+				</li>
+				<li class="policy_txt_disc_none">
+					{% trans "- Payment of reserves: 100% of the payment amount is paid as reserves regardless of the refund regulations (however, the reserves cannot be converted into cash)." %}
+				</li>
+				<li class="reserves_payment__policy_txt">
+					{% trans "If you fail to submit a style quiz within 3 days, including the payment date, the consulting application will be automatically canceled, and in this case, 90% of the payment will be refunded as reserves, excluding penalties. If you don't submit the quiz, you can't get a cash refund, so please check the deadline." %}
+				</li>
+				<li class="reserves_payment__policy_txt">
+					{% trans "Once the style quiz is finally submitted, it is difficult to change the consultant's schedule, so you cannot get a refund." %}
+				</li>
+				<li class="reserves_payment__policy_txt">
+					{% trans "All reserves, including those refunded as reserves, are not converted into cash." %}</li>
+				<li class="reserves_payment__policy_txt">
+					{% trans "Unused Consulting Inquiry services cannot be refunded even after the expiration of the period." %}
+				</li>
+			</ul>
+			<div class="reserves_payment__policy_checkbox">
+				<input type="checkbox" id="payCheck" />
+				<label for="payCheck" class="reserves_payment__policy_checkbox_txt">
+					{% trans "I agree to the refund policy of Cusmos Co., Ltd." %}
+				</label>
+			</div>
+		</div>
+		{% if name == 'Free' %}
+			<!-- pay button -->
+			<button id="payButton" class="reserves_payment__pay_button" onclick="location.href='{% url 'payments:event_free' %}'" disabled="disabled">
+				{% trans "Pay" %}&nbsp;<span id="total_pay"></span>&nbsp;{% trans "won" %}
+			</button>
+		{% else %}
+			<!-- pay button -->
+			<button id="payButton" class="reserves_payment__pay_button" onclick="pay_click()" disabled="disabled">
+				{% trans "Pay" %}&nbsp;<span id="total_pay"></span>&nbsp;{% trans "won" %}
+			</button>
+		{% endif %}
+	</section>
+</body>
+
+<script src="{% static 'js/reserves_payment.js' %}"></script>
+
+
+<script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.2.min.js" type="application/javascript"></script>
+<script>
+
+	function get_current_date() {
+		var date = new Date();
+		var year = date.getFullYear().toString();
+
+		var month = date.getMonth()+1;
+		month = month<10 ? '0'+month.toString() : month.toString();
+
+		var day = date.getDate();
+		day = day<10 ? '0'+day.toString() : day.toString();
+
+		return year+'-'+month+'-'+day;
+	}
+
+    let get_payment_number = new Promise((resolve, reject) => {
+        $.ajax({
+            url: "{% url 'payment:get_payment_number' %}",
+            type: "GET",
+            success: function (data, status, xhr) {
+                const order_number = data.payment_number
+                resolve(order_number)
+            },
+            error: function (xhr, status, error) {
+                console.log(error)
+            },
+        });
+    });
+
+    async function pay_click() {
+        let _price_str = document.getElementById("result_pnt").innerText;
+		let _price = _price_str.replace(",","").replace("₩", "");
+        let _name = 'Hair '+'{{name}} '+'Consultings Service'
+        let _data_name = '{{name}}'
+		let _type = 'HAIR ' + '{{name|upper}}'
+        let _order_number = await get_payment_number
+        let _discount = '{{discount}}'
+		let _original_price = '{{price}}'
+
+        BootPay.request({
+            price: _price,
+            application_id: "610b90e6019943001dc691f0",
+            name: _name,
+            show_agree_window: 1,
+            user_info: {
+                username: '{{ user.username }}',
+                email: '{{ user.email }}',
+                addr: '{{ user.customer.country }} {{ user.customer.state }}',
+                phone: '{{ user.customer.phone_number }}'
+            },
+            order_id: _order_number,
+            params: {
+
+			},
+            account_expire_at: get_current_date(),
+            extra: {
+                vbank_result: 0,
+                quota: '0,2,3',
+            }
+        }).error(function (data) {
+            console.log("error");
+            console.log(data);
+        }).cancel(function (data) {
+            console.log("cancel");
+            console.log(data);
+        }).ready(function (data) {
+            console.log("ready");
+            console.log(data);
+        }).close(function (data) {
+            console.log("close");
+            console.log("close_data",data);
+        }).done(function (data) {
+            console.log("done");
+            console.log(data);
+			console.log(_data_name)
+            $.ajax({
+                url: "{% url 'payments:verify' %}",
+                type: "GET",
+                data: {
+                    price: _price,
+                    receipt_id: data.receipt_id,
+					data_name: _data_name,
+					type: _type,
+					discount: _discount,
+					original_price: _original_price,
+                },
+                contentType: "application/json",
+                dataType: "json",
+                success: function (data, status, xhr) {
+                    console.log(data['url']);
+                    location.href = (data['url'])
+                },
+                error: function (xhr, status, error) {
+                    console.log(data);
+                }
+            });
+        })
+    }
+</script>
+{% endblock content %}
